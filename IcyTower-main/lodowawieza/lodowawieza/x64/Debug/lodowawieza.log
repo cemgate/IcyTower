@@ -1,4 +1,0 @@
-﻿  main.cpp
-C:\Users\MarcinCichocki(25932\Desktop\C++\IcyTower-main\lodowawieza\lodowawieza\main.cpp(355,29): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\MarcinCichocki(25932\Desktop\C++\IcyTower-main\lodowawieza\lodowawieza\main.cpp(356,30): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-  lodowawieza.vcxproj -> C:\Users\MarcinCichocki(25932\Desktop\C++\IcyTower-main\lodowawieza\x64\Debug\lodowawieza.exe
