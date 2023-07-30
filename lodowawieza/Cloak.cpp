@@ -1,3 +1,4 @@
+#include "includes.h"
 #include "Cloak.h"
 
 void Cloak::display(sf::RenderWindow& window)

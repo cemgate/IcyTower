@@ -1,19 +1,31 @@
 #pragma once
-#include "includes.h"
 #include "Player.h"
 #include "Background.h"
+#include "Platform.h"
+#include "Wall.h"
+#include "Column.h"
+#include "InputManager.h"
+#include "CollisionManager.h"
 
 class Game
 {
 public:
 	Game();
 	~Game();
+	std::vector<std::unique_ptr<Screen>> obj;
+	Player* mainPlayer;
+	Platform* mainPlatforms;
+	InputManager input;
+	CollisionManager collision;
 protected:
+	sf::Clock animateTime;
+	sf::Event event;
 	sf::RenderWindow* mainWindow;
 	void screenOptions();
 	void screenGame();
 	void screenDead();
 	void screenHighlights();
+	void generateObjectes();
 };
 
 void displayAll(std::vector<std::unique_ptr<Screen>>& obj, sf::RenderWindow& main);

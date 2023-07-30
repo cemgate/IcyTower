@@ -1,11 +1,11 @@
 #pragma once
-#include "includes.h"
 #include "Screen.h"
 
 class Column : public Screen
 {
 public:
 	sf::RenderTexture ColumnTextureRenderer;
+	sf::Sprite ColumnSpriteRenderer;
 	sf::Texture ColumnTexture;
 	sf::Sprite ColumnSprite;
 	sf::Vector2f pos;
@@ -15,5 +15,8 @@ public:
 	void move() override;
 	void generateSprite() override;
 	void setPosition() override;
+	void loadColumnTexture();
+	void loadColumnSprite();
+	void generateColumn();
 
 };

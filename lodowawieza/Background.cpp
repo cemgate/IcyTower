@@ -1,4 +1,6 @@
+#include "includes.h"
 #include "Background.h"
+
 
 void Background::display(sf::RenderWindow& window)
 {

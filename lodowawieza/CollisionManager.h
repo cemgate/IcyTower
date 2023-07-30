@@ -1,9 +1,12 @@
 #pragma once
-#include "includes.h"
+#include "Player.h" 
+#include "Platform.h"
 
 class CollisionManager
 {
 public:
-	int xsiema = 2;
+	void checkCollision(Player& player, Platform& platforms);
+	void leftRightWallCollision(Player& player, Platform& platforms);
+	void platformsCollision(Player& player, Platform& platforms);
 };
 
