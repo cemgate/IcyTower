@@ -12,7 +12,7 @@ public:
 	sf::Vector2f acceleration;
 
 	void display(sf::RenderWindow& window) override;
-	void move() override;
+	void move(float timeMove, float playerMove) override;
 	void generateSprite() override;
 	void setPosition() override;
 	void loadColumnTexture();

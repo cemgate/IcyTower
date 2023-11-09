@@ -10,7 +10,7 @@ void Column::display(sf::RenderWindow& window)
 	setPosition();
 }
 
-void Column::move()
+void Column::move(float timeMove, float playerMove)
 {
 }
 

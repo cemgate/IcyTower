@@ -95,7 +95,7 @@
     <ClInclude Include="Column.h">
       <Filter>Pliki nagłówkowe\Drawing</Filter>
     </ClInclude>
-    <ClInclude Include="Cloak.h">
+    <ClInclude Include="Clock.h">
       <Filter>Pliki nagłówkowe\Drawing</Filter>
     </ClInclude>
     <ClInclude Include="Wall.h">

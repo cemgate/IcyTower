@@ -2,19 +2,20 @@
 
 #include "Screen.h"
 
-class Background : public Screen
+class Clock :public Screen
 {
 public:
-	sf::RenderTexture BackgroundTextureRenderer;
-	sf::Texture BackgroundTexture;
-	sf::Sprite BackgroundSprite;
+	sf::Texture ClockTexture;
+	sf::Sprite ClockSprite;
 	sf::Vector2f pos;
-	sf::Vector2f acceleration;
+	float getClockTimeStep();
+	void setClockTimeStep();
 
+private:
+	float clockTimeStep = 1;
 	void display(sf::RenderWindow& window) override;
 	void move(float timeMove, float playerMove) override;
 	void generateSprite() override;
 	void setPosition() override;
-
 };
 

@@ -10,14 +10,14 @@ void CollisionManager::checkCollision(Player& player, Platform& platforms)
 
 void CollisionManager::leftRightWallCollision(Player& player, Platform& platforms)
 {
-	if (player.position.x < 350)
+	if (player.position.x < LEFT_WALL + player.PlayerSprite.getGlobalBounds().width / 2)
 	{
-		player.PlayerSprite.setPosition(350, player.PlayerSprite.getPosition().y);
+		player.PlayerSprite.setPosition(LEFT_WALL + player.PlayerSprite.getGlobalBounds().width / 2, player.PlayerSprite.getPosition().y);
 		player.velocity.x *= -1;
 	}
-	if (player.position.x > 350 + 1280 - player.PlayerSprite.getScale().x * player.PlayerTexture.getSize().x)
+	if (player.position.x > RIGHT_WALL - player.PlayerSprite.getGlobalBounds().width / 2)
 	{
-		player.PlayerSprite.setPosition(350 + 1280 - player.PlayerSprite.getScale().x * player.PlayerTexture.getSize().x, player.PlayerSprite.getPosition().y);
+		player.PlayerSprite.setPosition(RIGHT_WALL - player.PlayerSprite.getGlobalBounds().width / 2, player.PlayerSprite.getPosition().y);
 		player.velocity.x *= -1;
 	}
 }
@@ -26,33 +26,87 @@ void CollisionManager::platformsCollision(Player& player, Platform& platforms)
 {
 	sf::FloatRect playerBounds = player.PlayerSprite.getGlobalBounds();
 	sf::FloatRect platformBounds;
+	
+	
+	if (player.velocity.y < 0)
+	{
+		checkChunkToPlayer(player, platforms);
+	}
 
-	for (int i = 0; i < platforms.position.size() - 1; i++)
-	{   
-		std::cout << player.position.y;
-		/*
-		if (player.position.y + player.PlayerSprite.getScale().y * player.PlayerTexture.getSize().y > 1890);
+	
+	if(player.velocity.y>=0)
+	{
+		for (int i = 0; i < platforms.RenderedPlatformTextures.size() - 1; i++)
 		{
-			player.PlayerSprite.setPosition(player.PlayerSprite.getPosition().x, platforms.position[0].y - player.PlayerSprite.getScale().y * player.PlayerTexture.getSize().y-100);
-		}*/
-		if(platforms.position[i].y> player.position.y + player.PlayerSprite.getScale().x * player.PlayerTexture.getSize().y
-			&& platforms.position[i+1].y +32 < player.position.y + player.PlayerSprite.getScale().x * player.PlayerTexture.getSize().y)
-		{
-			player.playerChunkAfterMove = i;
-			std::cout << i << std::endl;
+			if (player.XLevelBounce == platforms.RenderedPlatformTextures[i])
+			{
+				platformBounds = platforms.PlatformSprites[i].getGlobalBounds();
+
+				if (playerBounds.intersects(platformBounds))
+				{
+					player.velocity.y = 0;
+					player.PlayerSprite.setPosition(player.position.x, PLATFORM_DEPTH + platforms.position[i].y - playerBounds.height / 2);
+					player.grounded = true;
+					player.positionUpdate();
+					
+					if (!setChunkToPlayer(playerBounds, platformBounds))
+					{
+						player.grounded = false;
+					}
+				}
+				else
+				{
+					checkChunkToPlayer(player, platforms);
+					break;
+				}
+			}
+			if (player.XLevelBounce == nullptr)
+			{
+				player.XLevelBounce = platforms.RenderedPlatformTextures[0];
+				break;
+			}
 		}
-
-		platformBounds = platforms.PlatformSprites[i].getGlobalBounds();
-
-		if (playerBounds.intersects(platformBounds) && player.playerChunkAfterMove==i)
-		{
-			player.PlayerSprite.setPosition(player.PlayerSprite.getPosition().x, platforms.position[i].y-player.PlayerSprite.getScale().y*player.PlayerTexture.getSize().y);
-			player.velocity.y = 0;
-			
-		}
-
-
 	}
 }
 
+bool CollisionManager::setChunkToPlayer(sf::FloatRect& playerBounds, sf::FloatRect& platformBounds)
+{
+	if (platformBounds.top + PLATFORM_DEPTH > playerBounds.top + playerBounds.height &&
+		platformBounds.left <= playerBounds.left + playerBounds.width &&
+		platformBounds.left + platformBounds.width >= playerBounds.left)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+void CollisionManager::checkChunkToPlayer(Player& player, Platform& platforms)
+{
+	sf::FloatRect playerBounds = player.PlayerSprite.getGlobalBounds();
+	sf::FloatRect platformBounds;
+
+	for (int i = 0; i < platforms.PlatformSprites.size() - 1; i++)
+	{
+		platformBounds = platforms.PlatformSprites[i].getGlobalBounds();
+		
+		if (platformBounds.top + PLATFORM_DEPTH > playerBounds.top + playerBounds.height )
+		{
+			if (setChunkToPlayer(playerBounds, platformBounds))
+			{
+				player.XLevelBounce = platforms.RenderedPlatformTextures[i];
+			}
+			else
+			{
+				continue;
+			}
+		}
+		else
+		{
+			break;
+		}
+	}
+}
 

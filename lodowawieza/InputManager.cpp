@@ -21,9 +21,15 @@ void InputManager::inputGame(Player& player)
 		leftMovement = true;
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && player.grounded==true)
 	{
 		jumpMovement = true;
+		player.grounded = false;
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::H))
+	{
+		player.PlayerSprite.rotate(20);
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
@@ -100,6 +106,6 @@ void InputManager::inputGame(Player& player)
 	player.velocity.y += .5*G;
 
 
-	rightMovement = leftMovement = jumpMovement =false;
+	rightMovement = leftMovement = jumpMovement = false;
 
 }

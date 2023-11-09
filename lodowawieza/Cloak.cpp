@@ -1,19 +1,28 @@
 #include "includes.h"
-#include "Cloak.h"
+#include "Clock.h"
 
-void Cloak::display(sf::RenderWindow& window)
+void Clock::display(sf::RenderWindow& window)
 {
-	window.draw(CloakSprite);
+	window.draw(ClockSprite);
 }
 
-void Cloak::move()
-{
-}
-
-void Cloak::generateSprite()
+void Clock::move(float timeMove, float playerMove)
 {
 }
 
-void Cloak::setPosition()
+void Clock::generateSprite()
+{
+}
+
+void Clock::setPosition()
+{
+}
+
+float Clock::getClockTimeStep()
+{
+	return this->clockTimeStep;
+}
+
+void Clock::setClockTimeStep()
 {
 }

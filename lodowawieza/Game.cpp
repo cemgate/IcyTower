@@ -4,7 +4,7 @@
 
 Game::Game() 
 {
-	mainWindow = new sf::RenderWindow(sf::VideoMode(1920, 1080), "lodowieza");
+	mainWindow = new sf::RenderWindow(sf::VideoMode(1920, 1380), "lodowieza");
 	screenGame();
 }
 
@@ -20,21 +20,28 @@ void Game::screenOptions()
 void Game::screenGame()
 {
 	generateObjectes();
-	generateAll(obj);
-	setPositionAll(obj);
+	generateAll();
+	setPositionAll();
 	
 	while (mainWindow->isOpen())
 	{
-			if (animateTime.getElapsedTime().asMilliseconds() >= 17)
+			if (animateTime.getElapsedTime().asMilliseconds() >= 16 )
 			{
 				mainWindow->clear();
 				input.inputGame(*mainPlayer);
-				moveAll(obj);
+				moveAll();
+				//mainPlayer->PlayerSprite.setPosition(750, 830 - (mainPlayer->PlayerSprite.getGlobalBounds().height) / 2);
 				collision.checkCollision(*mainPlayer, *mainPlatforms);
-				displayAll(obj, *mainWindow);
+				
+				displayAll(); 
 				mainWindow->display();
 				mainWindow->clear();
 				animateTime.restart();
+				if (death())
+				{
+					break;
+				}
+				
 			}
 	}
 }
@@ -64,22 +71,23 @@ void Game::generateObjectes()
 		std::cout << "rzutowanie powiodlo sie dla platform";
 	}
 
-
+	//obj.push_back(std::move(player));
 	obj.push_back(std::move(wall));
 	obj.push_back(std::move(column));
 	obj.push_back(std::move(platform));
 	obj.push_back(std::move(player));
+	
 }
 
-void displayAll(std::vector<std::unique_ptr<Screen>>& obj, sf::RenderWindow& main)
+void Game::displayAll()
 {
 	for (const auto& i : obj)
 	{
-		i->display(main);
+		i->display(*mainWindow);
 	}	
 }
 
-void generateAll(std::vector<std::unique_ptr<Screen>>& obj)
+void Game::generateAll()
 {
 	for (const auto& i : obj)
 	{
@@ -87,19 +95,24 @@ void generateAll(std::vector<std::unique_ptr<Screen>>& obj)
 	}
 }
 
-void moveAll(std::vector<std::unique_ptr<Screen>>& obj)
+void Game::moveAll()
 {
 	for (const auto& i : obj)
 	{
-		i->move();
+		i->move(clock.getClockTimeStep(), mainPlayer->playerMove);
 	}
 }
 
-void setPositionAll(std::vector<std::unique_ptr<Screen>>& obj)
+void Game::setPositionAll()
 {
 	for (const auto& i : obj)
 	{
 		i->setPosition();
 	}
+}
+
+bool Game::death()
+{
+	return mainPlayer->position.y > mainWindow->getSize().y+200;
 }
 

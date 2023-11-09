@@ -7,8 +7,9 @@ void Wall::display(sf::RenderWindow& window)
 	window.draw(WallSprite);
 }
 
-void Wall::move()
+void Wall::move(float timeMove, float playerMove)
 {
+	WallSprite.move(0, 0.2*(timeMove + playerMove));
 }
 
 void Wall::generateSprite()
@@ -32,3 +33,6 @@ void Wall::setPosition()
 {
 	WallSprite.setPosition(350, -(int)WallTexture.getSize().y + 1080);	
 }
+
+
+
