@@ -2,17 +2,21 @@
 
 #include "Screen.h"
 
-class Cloak :public Screen
+class Clock :public Screen
 {
 public:
-	sf::Texture CloakTexture;
-	sf::Sprite CloakSprite;
+	sf::Texture ClockTexture;
+	sf::Sprite ClockSprite;
 	sf::Vector2f pos;
+	float getClockTimeStep();
+	void setClockTimeStep();
+
 private:
+	float clockTimeStep = 1;
 	void display(sf::RenderWindow& window) override;
-	void move() override;
+	void move(float timeMove, float playerMove) override;
 	void generateSprite() override;
 	void setPosition() override;
-
 };
+
 
