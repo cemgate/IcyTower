@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Pliki źródłowe">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Pliki zasobów">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\Drawing">
+      <UniqueIdentifier>{d53f61b8-585b-4c00-9668-a35181900560}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Drawing">
+      <UniqueIdentifier>{cb13bbed-324e-451e-8734-9e4ed95bb432}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\GameManager">
+      <UniqueIdentifier>{c2044627-0150-4ab9-a97e-2f2c666babe8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\Interface">
+      <UniqueIdentifier>{e8e3fa9a-74a5-46f3-971e-b5363d76ea8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\GameManagaer">
+      <UniqueIdentifier>{7ceb69d7-730d-40e1-bbc5-2c7d7fe1f253}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Interface">
+      <UniqueIdentifier>{144054dc-99b2-4d35-a5fc-c22e3815521f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="Background.cpp">
+      <Filter>Pliki źródłowe\Drawing</Filter>
+    </ClCompile>
+    <ClCompile Include="Cloak.cpp">
+      <Filter>Pliki źródłowe\Drawing</Filter>
+    </ClCompile>
+    <ClCompile Include="Column.cpp">
+      <Filter>Pliki źródłowe\Drawing</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform.cpp">
+      <Filter>Pliki źródłowe\Drawing</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Pliki źródłowe\Drawing</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreManager.cpp">
+      <Filter>Pliki źródłowe\GameManagaer</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>Pliki źródłowe\GameManagaer</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Pliki źródłowe\GameManagaer</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Pliki źródłowe\GameManagaer</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Pliki źródłowe\GameManagaer</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall.cpp">
+      <Filter>Pliki źródłowe\Drawing</Filter>
+    </ClCompile>
+    <ClCompile Include="Screen.cpp">
+      <Filter>Pliki źródłowe\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="includes.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="ComboStars.cpp">
+      <Filter>Pliki źródłowe\Drawing</Filter>
+    </ClCompile>
+    <ClCompile Include="Star.cpp">
+      <Filter>Pliki źródłowe\Drawing</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Pliki nagłówkowe\Drawing</Filter>
+    </ClInclude>
+    <ClInclude Include="Background.h">
+      <Filter>Pliki nagłówkowe\Drawing</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform.h">
+      <Filter>Pliki nagłówkowe\Drawing</Filter>
+    </ClInclude>
+    <ClInclude Include="Column.h">
+      <Filter>Pliki nagłówkowe\Drawing</Filter>
+    </ClInclude>
+    <ClInclude Include="Clock.h">
+      <Filter>Pliki nagłówkowe\Drawing</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall.h">
+      <Filter>Pliki nagłówkowe\Drawing</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Pliki nagłówkowe\GameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionManager.h">
+      <Filter>Pliki nagłówkowe\GameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Pliki nagłówkowe\GameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreManager.h">
+      <Filter>Pliki nagłówkowe\GameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Pliki nagłówkowe\GameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Screen.h">
+      <Filter>Pliki nagłówkowe\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="includes.h">
+      <Filter>Pliki nagłówkowe\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="ComboStars.h">
+      <Filter>Pliki nagłówkowe\Drawing</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="Star.h">
+      <Filter>Pliki nagłówkowe\Drawing</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="lodowawieza.rc">
+      <Filter>Pliki zasobów</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
