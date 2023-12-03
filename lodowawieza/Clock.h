@@ -12,7 +12,7 @@ public:
 	void setClockTimeStep();
 
 private:
-	float clockTimeStep = 1;
+	float clockTimeStep = 0.0f;
 	void display(sf::RenderWindow& window) override;
 	void move(float timeMove, float playerMove) override;
 	void generateSprite() override;

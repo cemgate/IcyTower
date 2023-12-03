@@ -15,6 +15,7 @@ public:
 	sf::RenderTexture* YLevelBounce = nullptr;
 	sf::RenderTexture* XLevelBounce = nullptr;
 
+	int jumpStrength = 0;
 	float playerMove = 0;
 	bool grounded = false;
 
@@ -23,6 +24,7 @@ public:
 	void move(float timeMove, float playerMove) override;
 	void setPosition() override;
 	void positionUpdate();
+	bool readyToStartTheGame();
 	
 };
 

@@ -19,12 +19,13 @@ void InputManager::inputGame(Player& player)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		leftMovement = true;
+		
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && player.grounded==true)
 	{
 		jumpMovement = true;
-		player.grounded = false;
+		player.grounded = false;	
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::H))
@@ -73,7 +74,7 @@ void InputManager::inputGame(Player& player)
 				player.velocity.x = 0;
 			}
 		}
-
+		
 	}
 	//hamowanie przy ruchu w prawo jak puscimy przycisk
 
@@ -90,7 +91,7 @@ void InputManager::inputGame(Player& player)
 
 	if (!leftMovement && player.velocity.x != 0.0f && player.velocity.x < 0.0f)
 	{
-		player.velocity.x += ACCELERATION;
+		player.velocity.x += 1.2 * ACCELERATION;
 		if (player.velocity.x > 0.0f)
 		{
 			player.velocity.x = 0.0f;
@@ -99,11 +100,29 @@ void InputManager::inputGame(Player& player)
 
 	if (jumpMovement)
 	{
-		player.velocity.y -= JUMP_ACCELERATION;
+		if (std::abs(player.velocity.x)>14.0f)
+		{
+			player.jumpStrength = 3;
+			player.velocity.y = -1.0f * (std::abs(player.velocity.x)) - JUMP_ACCELERATION;
+		}
+
+		else if (std::abs(player.velocity.x)>9.0f)
+		{
+			player.jumpStrength = 2;
+			player.velocity.y = -0.5f * (std::abs(player.velocity.x)) - JUMP_ACCELERATION;
+		}
+
+		else
+		{
+			player.jumpStrength = 1;
+			player.velocity.y -= JUMP_ACCELERATION;
+		}
 	}
     
-
-	player.velocity.y += .5*G;
+	if (!player.grounded)
+	{
+		player.velocity.y += .5 * G;
+	}
 
 
 	rightMovement = leftMovement = jumpMovement = false;

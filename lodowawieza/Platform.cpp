@@ -1,6 +1,8 @@
 #include "includes.h"
 #include "Platform.h"
 
+
+
 void Platform::display(sf::RenderWindow& window)
 {
 	for (auto& i : PlatformSprites)
@@ -28,12 +30,16 @@ void Platform::generateSprite()
 
 void Platform::setPosition()
 {
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_real_distribution<float> dis(0.0f, 10.0f);
+
 	int k = 170;
-	double cos;
+	float randomFloat;
 	bool first = true;
 	for (auto& i : PlatformSprites)
 	{
-		cos = std::abs(std::sin(rand()));
+		randomFloat = std::abs(std::sin(dis(gen)));
 		if (first)
 		{
 			i.setPosition(350, 1000 - k);
@@ -41,7 +47,7 @@ void Platform::setPosition()
 		}
 		else
 		{
-			i.setPosition(350 + cos * (1280 - i.getTexture()->getSize().x), 1000 - k);
+			i.setPosition(350 + randomFloat * (1280 - i.getTexture()->getSize().x), 1000 - k);
 		}
 		k += 170;
 	}
@@ -83,7 +89,7 @@ void Platform::generateShortPlatforms(int howManyPlatforms)
 	for (int i = 1; i < howManyPlatforms; i++)
 	{
 		sf::Sprite sprite;
-		int howMany = std::rand() % 9 + 2;
+		int howMany = std::rand() % 9 + 4;
 		RenderedPlatformTextures[i] = new sf::RenderTexture;
 		RenderedPlatformTextures[i]->create(howMany * SidePlatformTextures[0].getSize().x, SidePlatformTextures[0].getSize().y);
 
@@ -110,6 +116,8 @@ void Platform::generateShortPlatforms(int howManyPlatforms)
 		}
 
 		PlatformSprites[i].setTexture(RenderedPlatformTextures[i]->getTexture());
+		
+		
 	}
 }
 
@@ -123,7 +131,7 @@ void Platform::generateNewPlatform()
 	RenderedPlatformTextures.push_back(newestTexture);
 
 
-	int howMany = std::rand() % 9 + 2;
+	int howMany = std::rand() % 9 + 4;
 
 	RenderedPlatformTextures[RenderedPlatformTextures.size() - 1]->create(howMany * SidePlatformTextures[0].getSize().x, SidePlatformTextures[0].getSize().y);
 
@@ -148,8 +156,9 @@ void Platform::generateNewPlatform()
 			RenderedPlatformTextures[RenderedPlatformTextures.size() - 1]->draw(newestSprite);
 		}
 	}
-
+	sf::Color newColor(137, 207, 240);
 	PlatformSprites[PlatformSprites.size() - 1].setTexture(RenderedPlatformTextures[RenderedPlatformTextures.size() - 1]->getTexture());
+	PlatformSprites[PlatformSprites.size() - 1].setColor(newColor);
 
 }
 

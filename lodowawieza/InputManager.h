@@ -1,7 +1,7 @@
 #pragma once
 #include "Player.h"
 
-constexpr float ACCELERATION = 0.34f;
+constexpr float ACCELERATION = 0.3f;
 constexpr float MAX_SPEED = 15.0f;
 constexpr float MIN_SPEED = -15.0f;
 constexpr float JUMP_ACCELERATION = 20.0f;

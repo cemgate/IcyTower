@@ -44,22 +44,23 @@ void CollisionManager::platformsCollision(Player& player, Platform& platforms)
 
 				if (playerBounds.intersects(platformBounds))
 				{
+					
 					player.velocity.y = 0;
 					player.PlayerSprite.setPosition(player.position.x, PLATFORM_DEPTH + platforms.position[i].y - playerBounds.height / 2);
 					player.grounded = true;
 					player.positionUpdate();
+					break;
 					
-					if (!setChunkToPlayer(playerBounds, platformBounds))
-					{
-						player.grounded = false;
-					}
 				}
 				else
 				{
 					checkChunkToPlayer(player, platforms);
+					player.grounded = false;
 					break;
 				}
 			}
+
+
 			if (player.XLevelBounce == nullptr)
 			{
 				player.XLevelBounce = platforms.RenderedPlatformTextures[0];

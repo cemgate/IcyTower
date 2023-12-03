@@ -59,3 +59,8 @@ void Player::positionUpdate()
 	position = PlayerSprite.getPosition();
 }
 
+bool  Player::readyToStartTheGame()
+{
+	return position.y < 250.0f;
+}
+

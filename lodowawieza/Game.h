@@ -22,6 +22,7 @@ public:
 
 protected:
 	sf::Clock animateTime;
+	sf::Clock clockTime;
 	sf::Event event;
 	sf::RenderWindow* mainWindow;
 

@@ -4,7 +4,7 @@
 
 Game::Game() 
 {
-	mainWindow = new sf::RenderWindow(sf::VideoMode(1920, 1380), "lodowieza");
+	mainWindow = new sf::RenderWindow(sf::VideoMode(1920, 1080), "lodowieza");
 	screenGame();
 }
 
@@ -19,6 +19,7 @@ void Game::screenOptions()
 
 void Game::screenGame()
 {
+	bool isGameStarted = false;
 	generateObjectes();
 	generateAll();
 	setPositionAll();
@@ -27,16 +28,31 @@ void Game::screenGame()
 	{
 			if (animateTime.getElapsedTime().asMilliseconds() >= 16 )
 			{
+				if (isGameStarted)
+				{
+					if (clockTime.getElapsedTime().asSeconds() >= 25)
+					{
+						clock.setClockTimeStep();
+						clockTime.restart();
+					}
+				}
+
+				else if (mainPlayer->readyToStartTheGame() && !isGameStarted)
+				{
+					clock.setClockTimeStep();
+					isGameStarted = true;
+				}
+
 				mainWindow->clear();
 				input.inputGame(*mainPlayer);
 				moveAll();
-				//mainPlayer->PlayerSprite.setPosition(750, 830 - (mainPlayer->PlayerSprite.getGlobalBounds().height) / 2);
+
 				collision.checkCollision(*mainPlayer, *mainPlatforms);
 				
 				displayAll(); 
 				mainWindow->display();
-				mainWindow->clear();
 				animateTime.restart();
+
 				if (death())
 				{
 					break;

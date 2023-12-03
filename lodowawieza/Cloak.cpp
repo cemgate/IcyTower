@@ -25,4 +25,5 @@ float Clock::getClockTimeStep()
 
 void Clock::setClockTimeStep()
 {
+	this->clockTimeStep += 1.0f;
 }
