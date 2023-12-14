@@ -1,16 +1,16 @@
 #pragma once
-
 #include "Screen.h"
+#include "Star.h"
 
-class Background : public Screen
+class ComboStars : public Screen
 {
-public:
-	sf::RenderTexture BackgroundTextureRenderer;
-	sf::Texture BackgroundTexture;
-	sf::Sprite BackgroundSprite;
-	sf::Vector2f pos;
-	sf::Vector2f acceleration;
+private:
 
+	std::list<Star> magicStars;
+
+public:
+	
+	void generateStars(const float& posX, const float& posY, int count);
 	void display(sf::RenderWindow& window) override;
 	void move(float timeMove, float playerMove) override;
 	void generateSprite() override;

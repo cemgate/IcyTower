@@ -1,3 +1,4 @@
+#include "includes.h"
 #include "Engine.h"
 
 void Engine::load_grafics()
@@ -24,8 +25,9 @@ void Engine::load_grafics()
 	//right_background_sprite.setTexture(background_right);
 
 	const int numRows = 100;
-	const int numColumns = 20;
-
+	const int numColumns = numRows;
+	
+	
     //                   Wyrenderowanie wiezy 
 
 	sf::RenderTexture render_texture;

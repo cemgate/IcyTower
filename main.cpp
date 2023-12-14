@@ -2,6 +2,7 @@
 #include "Screen.h"
 #include "Player.h"
 #include "Background.h"
+#include "Game.h"
 
 
 //int main()
@@ -486,24 +487,6 @@
 
 int main()
 {
-	Player skrin;
-	skrin.generateSprite();
-	Screen* back = new Background;
-	back->generateSprite();
-	
-	
-	auto* mainWindow = back->getWind();
-	sf::RenderWindow mainnn(sf::VideoMode(1920, 1080), "lodowieza");
-	
-	while (mainnn.isOpen())
-	{
-		sf::Event event;
-		while (mainnn.pollEvent(event))
-		{
-			mainnn.clear();
-			skrin.display2(mainnn);
-			mainnn.display();
-		}
-	}
+	Game init;	
 }
 

@@ -1,17 +1,23 @@
+#include "includes.h"
 #include "Background.h"
+
 
 void Background::display(sf::RenderWindow& window)
 {
 	window.draw(BackgroundSprite);
 }
 
-void Background::move()
+void Background::move(float timeMove, float playerMove)
 {
 }
 
 void Background::generateSprite()
 {
-	BackgroundTexture.loadFromFile("grafics/kwadrat.png");
+	BackgroundTexture.loadFromFile("grafics/aha.png");
 	BackgroundSprite.setTexture(BackgroundTexture);
-	BackgroundSprite.setPosition(100, 100);
+	BackgroundSprite.setPosition(300, 300);
+}
+
+void Background::setPosition()
+{
 }
