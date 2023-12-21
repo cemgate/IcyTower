@@ -5,9 +5,12 @@
 
 void Platform::display(sf::RenderWindow& window)
 {
+	
 	for (auto& i : PlatformSprites)
 	{
-		window.draw(i);
+		
+			window.draw(i);
+		
 	}
 }
 
@@ -160,16 +163,15 @@ void Platform::generateNewPlatform()
 	}
 	sf::Color newColor(137, 207, 240);
 	PlatformSprites[PlatformSprites.size() - 1].setTexture(RenderedPlatformTextures[RenderedPlatformTextures.size() - 1]->getTexture());
-	PlatformSprites[PlatformSprites.size() - 1].setColor(newColor);
+	//PlatformSprites[PlatformSprites.size() - 1].setColor(newColor);
 
 }
 
 void Platform::setNewPlatformPosition()
 {
-	int k = 170;
-	double cos;
-	cos = std::abs(std::sin(rand()));
-	PlatformSprites[PlatformSprites.size() - 1].setPosition(350 + cos * (1280 - PlatformSprites[PlatformSprites.size() - 1].getTexture()->getSize().x), position[position.size() - 2].y - k);
+	int distanceBetweenPlatforms = 170;
+	double randomPositionFactor = std::abs(std::sin(rand()));
+	PlatformSprites[PlatformSprites.size() - 1].setPosition(350 + randomPositionFactor * (1280 - PlatformSprites[PlatformSprites.size() - 1].getTexture()->getSize().x), position[position.size() - 2].y - distanceBetweenPlatforms);
 }
 
 void Platform::updatePosition()

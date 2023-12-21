@@ -12,25 +12,24 @@ void InputManager::inputFirstScreen()
 
 void InputManager::inputGame(Player& player, ScoreManager& score, ComboStars& stars)
 {
+	std::string actionAnimation = "";
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		rightMovement = true;
+		actionAnimation = "right";
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		leftMovement = true;
-		
+		actionAnimation = "left";	
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && player.grounded==true)
 	{
+		actionAnimation = "jump";
 		jumpMovement = true;
 		player.grounded = false;	
-	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::H))
-	{
-		player.PlayerSprite.rotate(20);
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
@@ -124,6 +123,7 @@ void InputManager::inputGame(Player& player, ScoreManager& score, ComboStars& st
 		player.velocity.y += .5 * G;
 	}
 
+	player.changeSprite(actionAnimation);
 	comboCondition(player, score, stars);
 
 	rightMovement = leftMovement = jumpMovement = false;

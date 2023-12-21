@@ -24,6 +24,10 @@ void CollisionManager::leftRightWallCollision(Player& player, Platform& platform
 
 void CollisionManager::platformsCollision(Player& player, Platform& platforms, ScoreManager& score)
 {
+	// Do porownywania hitboxow roznych obiektow malowanych na scenie sluzy do tego klasa FloatReact 
+	// ktora zwraca nam prostakat o wymiarach danego sprite dlatego tworzymy playerBounds ktory odpowiada za hitbox postaci
+	// oraz platformBounds ktory odpowiada za hitboxy platform
+
 	sf::FloatRect playerBounds = player.PlayerSprite.getGlobalBounds();
 	sf::FloatRect platformBounds;
 	
@@ -87,24 +91,40 @@ bool CollisionManager::setChunkToPlayer(sf::FloatRect& playerBounds, sf::FloatRe
 
 void CollisionManager::checkChunkToPlayer(Player& player, Platform& platforms)
 {
+	// Do porownywania hitboxow roznych obiektow malowanych na scenie sluzy do tego klasa FloatReact 
+	// ktora zwraca nam prostakat o wymiarach danego sprite dlatego tworzymy playerBounds ktory odpowiada za hitbox postaci
+	// oraz platformBounds ktory odpowiada za hitboxy platform
+
 	sf::FloatRect playerBounds = player.PlayerSprite.getGlobalBounds();
 	sf::FloatRect platformBounds;
 
+
+	// Petla w ktorej bedziemy przeszukiwac po kazdej platformie czy nasza postac moze na niej wyladowac
 	for (int i = 0; i < platforms.PlatformSprites.size() - 1; i++)
 	{
+		// Zainicjowanie hitboxa dla pierwszej platformy
 		platformBounds = platforms.PlatformSprites[i].getGlobalBounds();
 		
+		// Sprawdzenie czy nasza platforma znajduje sie pod nami a nie nad nami, jesli jest nad nami to nie chcemy jej sprawdzac
 		if (platformBounds.top + PLATFORM_DEPTH > playerBounds.top + playerBounds.height )
 		{
+
+			// Wywolanie funkcji checkPossibleLanding() ktora zwraca true jesli mozemy wyladowac na platformie
+			// oraz false jesli nie mozemy na niej wyladowac
 			if (setChunkToPlayer(playerBounds, platformBounds))
 			{
+				//przypisanie wskaznika na platforme na ktorej mozemy wyladowac
 				player.XLevelBounce = platforms.RenderedPlatformTextures[i];
 			}
 			else
 			{
+				//jesli nie mozemy na danej platformie wyladowac to kontynuujemy przeszukiwanie
 				continue;
 			}
 		}
+
+		// Jesli platforma ktora sprawdzilismy znajduje sie nad nami to konczymy dzialanie tej funkcji
+		// poniewaz nie potrzebujemy sprawdzac platform nad glowa postaci
 		else
 		{
 			break;

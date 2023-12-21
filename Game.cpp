@@ -28,7 +28,7 @@ void Game::screenGame()
 	{
 			if (animateTime.getElapsedTime().asMilliseconds() >= 16 )
 			{
-				if (isGameStarted)
+				if (0>1)
 				{
 					if (clockTime.getElapsedTime().asSeconds() >= 25)
 					{
@@ -39,7 +39,7 @@ void Game::screenGame()
 
 				else if (mainPlayer->readyToStartTheGame() && !isGameStarted)
 				{
-					clock.setClockTimeStep();
+					//clock.setClockTimeStep();
 					isGameStarted = true;
 				}
 
@@ -47,21 +47,25 @@ void Game::screenGame()
 				input.inputGame(*mainPlayer,score,*stars);
 				moveAll();
 
+			
+
+
+
+
 				collision.checkCollision(*mainPlayer, *mainPlatforms, score);
 				
 				displayAll(); 
 				mainWindow->display();
 				animateTime.restart();
 
-				sf::Texture texture;
-				texture.create(mainWindow->getSize().x, mainWindow->getSize().y);
-				texture.update(*mainWindow);
+				//sf::Texture texture;
+				//texture.create(mainWindow->getSize().x, mainWindow->getSize().y);
+				//texture.update(*mainWindow);
 
 				
 
-				const sf::Uint8* pixels = texture.copyToImage().getPixelsPtr();
-				//std::cout << "R: " << static_cast<int>(pixels[0]) << " G: " << static_cast<int>(pixels[1]) << " B: " << static_cast<int>(pixels[2]) << " A: " << static_cast<int>(pixels[3]) << std::endl;
-				
+				//const sf::Uint8* pixels = texture.copyToImage().getPixelsPtr();
+			
 		
 				if (death())
 				{
@@ -82,7 +86,7 @@ void Game::screenHighlights()
 
 void Game::generateObjectes()
 {
-	std::unique_ptr<Screen> player = std::make_unique<Player>();
+	std::unique_ptr<Screen> player = std::make_unique<Player>(15);
 	std::unique_ptr<Screen> starss = std::make_unique<ComboStars>();
 	std::unique_ptr<Screen> wall = std::make_unique<Wall>();
 	std::unique_ptr<Screen> column = std::make_unique<Column>();
