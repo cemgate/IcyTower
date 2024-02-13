@@ -4,3 +4,6 @@ Now working on:
 
 Youtube video about this project.
 https://www.youtube.com/watch?v=TiIPgl6OUX4&t=2s
+
+Overleaf document about this project.
+https://www.overleaf.com/read/rmsygtvgrdzv#d62050
